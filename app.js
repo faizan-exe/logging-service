@@ -16,5 +16,5 @@ mongoose.connect("mongodb+srv://waqasali00123:baQ4pFoRpSOEmLS2@cluster0.1c8za.mo
 
 app.use('/api/log', require('./routes/api.route'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));
