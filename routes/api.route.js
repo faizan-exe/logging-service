@@ -1,4 +1,7 @@
-const Log = require('../models/log.model'); // Assuming the Log model is in models/log.model.js
+const express = require('express');
+const Log = require('../models/Log'); // Assuming the Log model is in models/log.model.js
+
+const router = express.Router();
 
 // Controller to create a log
 const createLog = async (req, res) => {
@@ -43,8 +46,9 @@ const getLogsByUserId = async (req, res) => {
   }
 };
 
-module.exports = {
-  createLog,
-  getAllLogs,
-  getLogsByUserId,
-};
+// Routes
+router.post('/', createLog);
+router.get('/', getAllLogs);
+router.get('/:user_id', getLogsByUserId);
+
+module.exports = router;
