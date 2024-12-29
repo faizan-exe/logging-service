@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose'); // Import mongoose
 const routes =  require('./routes/api.route')
+const cors = require('cors');
 require('dotenv').config();
 
+
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -17,5 +20,5 @@ mongoose.connect("mongodb+srv://waqasali00123:baQ4pFoRpSOEmLS2@cluster0.1c8za.mo
 
 app.use('/api/log', routes);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));

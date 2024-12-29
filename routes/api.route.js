@@ -50,6 +50,6 @@ const getLogsByUserId = async (req, res) => {
 // Routes
 router.post('/', createLog);
 router.get('/', getAllLogs);
-router.get('/:username', getLogsByUserId);
+router.get('/:user_id', getLogsByUserId);
 
 module.exports = router;

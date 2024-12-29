@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 
 // Define the schema for logs
 const LogSchema = new mongoose.Schema({
-  username: {
+  user_id: {
     type: String,
-    required: [true, "Provide User Name"],},
+    required: [true, "Provide UserId"],},
   req_url: {
     type: String,
     required: [true, "Provide Request URL"],
