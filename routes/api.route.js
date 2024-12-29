@@ -6,12 +6,12 @@ const router = express.Router();
 // Controller to create a log
 const createLog = async (req, res) => {
   try {
-    const { user_id, req_url } = req.body;
-    if (!user_id || !req_url) {
-      return res.status(400).json({ message: 'user_id and req_url are required.' });
+    const { username, req_url } = req.body;
+    if (!username || !req_url) {
+      return res.status(400).json({ message: 'username and req_url are required.' });
     }
 
-    const log = new Log({ user_id, req_url });
+    const log = new Log({ username, req_url });
     await log.save();
     res.status(201).json(log);
   } catch (error) {
@@ -23,6 +23,7 @@ const createLog = async (req, res) => {
 // Controller to get all logs
 const getAllLogs = async (req, res) => {
   try {
+
     const logs = await Log.find();
     res.status(200).json(logs);
   } catch (error) {
@@ -31,17 +32,17 @@ const getAllLogs = async (req, res) => {
   }
 };
 
-// Controller to get logs by user_id
+// Controller to get logs by username
 const getLogsByUserId = async (req, res) => {
   try {
-    const { user_id } = req.params;
-    const logs = await Log.find({ user_id });
+    const { username } = req.params;
+    const logs = await Log.find({ username });
     if (!logs.length) {
       return res.status(404).json({ message: 'No logs found for this user.' });
     }
     res.status(200).json(logs);
   } catch (error) {
-    console.error('Error fetching logs by user_id:', error);
+    console.error('Error fetching logs by username:', error);
     res.status(500).json({ message: 'Internal server error.' });
   }
 };
@@ -49,6 +50,6 @@ const getLogsByUserId = async (req, res) => {
 // Routes
 router.post('/', createLog);
 router.get('/', getAllLogs);
-router.get('/:user_id', getLogsByUserId);
+router.get('/:username', getLogsByUserId);
 
 module.exports = router;
